@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -30,10 +31,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PostRequest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         //dd($request->content);
 
@@ -48,7 +49,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        //return $post;
+        return view('posts.post');
     }
 
     /**
@@ -69,7 +71,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         //dd($request);
         $post->content = $request->content;
