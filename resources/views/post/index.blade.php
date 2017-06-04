@@ -1,15 +1,24 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
-<div style="border: 1px solid black">
-<h1>Todos los post</h1>
-<ul>
-		@forelse ($posts as $post)
-				<li>{{ $post->content }}</li>	
-		@empty
-				<li>{{ Vacio }}</li>	
-		@endforelse	
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Todos los Posts</div>
+                <div class="panel-body">
+					@forelse ($posts as $post)
+							<li>
+								<a href="{{ url('posts', $post->id) }}"> 
+									{{ $post->content }}
+								</a>
+							</li>	
+					@empty
+							<li>{{ Vacio }}</li>	
+					@endforelse	
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-@stop
+@endsection
