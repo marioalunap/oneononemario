@@ -13,13 +13,21 @@ class Post extends Model
     	'content',
     ];
 
+    protected $appends = [
+    	'abstract',
+    ];
+
     public function getCreatedAtAttribute($parametro1){
-    	return $parametro1;
+    	$parametro1 = new Carbon($parametro1);
     	return Carbon::now()->diffForHumans($parametro1);
     }
 
     public function getContentAttribute($parametro1){
     	return strtoupper($parametro1);
+    }
+
+    public function getAbstractAttribute(){
+    	return substr($this->content, 0, 4);
     }
 
 
