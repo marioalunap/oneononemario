@@ -19,7 +19,7 @@ class PostController extends Controller
         //return Post::all();
         $posts = Post::where('user_id', \Auth::user()->id)
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->get();    
         return view('post.index', compact('posts'));
     }
 
@@ -47,6 +47,8 @@ class PostController extends Controller
             'content' => $request->content,
             'user_id' => \Auth::user()->id
         ]);
+
+        session()->flash('message','Post creado correctamente');
 
         return redirect('posts');
     }
@@ -100,6 +102,10 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return ['status'=>'true'];
+        //return ['status'=>'true'];
+
+        session()->flash('message','Post eliminado');
+
+        return redirect('posts');
     }
 }
