@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -52,6 +53,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //return $post;
+        //return Carbon::now()->diffForHumans($post->created_at);
         return view('post.post', compact('post'));
     }
 
