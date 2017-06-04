@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.form');
     }
 
     /**
@@ -41,7 +41,12 @@ class PostController extends Controller
     {
         //dd($request->content);
 
-        return Post::create($request->all());
+        $post = Post::create([
+            'content' => $request->content,
+            'user_id' => \Auth::user()->id
+        ]);
+
+        return redirect('posts');
     }
 
     /**

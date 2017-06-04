@@ -14,6 +14,7 @@
 use App\Models\Post;
 
 Route::get('/', function () {
+
     return view('welcome');
     //return Post::all();
 });
@@ -27,3 +28,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('temp', function () {
+	return App\Models\Post::create([
+			'content' => "Aqui testeando",
+			'user_id' => \Auth::user()->id
+		]);
+    //return Post::all();
+});
