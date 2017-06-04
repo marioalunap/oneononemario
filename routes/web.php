@@ -19,7 +19,12 @@ Route::get('/', function () {
     //return Post::all();
 });
 
-Route::resource('posts', 'PostController');
+Route::resource('posts', 
+		'PostController', 
+		[
+			'middleware'=>'App\Http\Middleware\PostOwner'
+		]
+);
 
 Auth::routes();
 
